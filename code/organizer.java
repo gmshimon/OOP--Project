@@ -25,6 +25,7 @@ public class organizer {
         Scanner inp = new Scanner(System.in);
 
         int choice;
+        String name;
 
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("\t Welcome to our organization");
@@ -111,8 +112,9 @@ public class organizer {
                     } else {
                         System.out.println("no donor");
                     }
+                    System.out.println("");
                     if (rec.size() > 0) {
-                        String choice2;
+
                         System.out.println("++++++++++++++++++++++List of Receiver++++++++++++++++++++++");
 
                         System.out.printf("%-5s%-20s%-15s%-19s%-15s%-10s\n", "NO.", "Name", "Address", "No. of Family",
@@ -124,9 +126,7 @@ public class organizer {
                         }
 
                         System.out.println("");
-                        System.out.print("Type donors name to donate the receiver: ");
-                        choice2 = inp.nextLine();
-                        // Volunteer.deliverItem(vol, don, rec, pp, rr);// vector of volunteer,
+                        Volunteer.deliverItem(vol, don, rec, pp, rr);// vector of volunteer,
                         // donor,receiver,
                         // people,donor and restaurant donor have been
                         // passed

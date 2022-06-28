@@ -64,21 +64,63 @@ public class volunteer { // volunteer class
   // assign a volunteer to deliver the item to the receiver
   public void deliverItem(Vector<volunteer> vol, Vector<donor> don, Vector<Receiver> rec, Vector<people> pp,
       Vector<restaurant> rr) {
+
     if (don.size() == 0) {
       System.out.println("Sorry we do not have any donation right now.. Later we will try to deliver the donation\n");
     } else {
-      for (int j = 0, f = 0; j < rec.size() && f < don.size(); j++, f++) {
-        if (don.get(j).getType() == "People") {
-          System.out.println(rec.get(j).getName() + " Has got donation from " + don.get(f).getName()
-              + ". Amount of money: " + pp.get(f).getAmount());
-          pp.remove(f); // remove the details of people donor from the vector
-        } else {
-          System.out.println(rec.get(j).getName() + " Has got donation from " + don.get(j).getName() + " restaurant"
-              + ". Food Type: " + rr.get(f).getFoodType());
-          rr.remove(f);// remove the details of restaurant donor from the vector
+      Scanner Input = new Scanner(System.in);
+      String name;
+
+      System.out.println("");
+      System.out.print("Type donors name to donate the receiver: ");
+
+      name = Input.next();
+
+      for (int d = 0, r = 0; d < don.size() && r < rec.size(); d++, r++) {
+
+        // checks the deliver method the receiver wants
+        if (rec.get(r).getDeliveryMethod() == "Home Delivery") {
+          if (vol.size() > 0) {
+            for (int j = 0; j < vol.size(); j++) {
+              // check the input donor name matches or not
+              if (don.get(d).getName().equals(name)) {
+
+                // check the donor type
+                if (don.get(d).getType() == "People") {
+                  for (int i = 0; i < pp.size(); i++) {
+                    System.out.println(rec.get(r).getName() + " Has got donation from " + don.get(d).getName()
+                        + ". Amount of money: " + pp.get(i).getAmount());
+                    System.out.println("Volunteer,name: " + vol.get(j).getName() + " will deliver to your address");
+                  }
+                } // end of if
+
+                // restaurant type donor
+                else {
+                  for (int i = 0; i < rr.size(); i++) {
+                    System.out.println(rec.get(r).getName() + " Has got donation from " + don.get(d).getName()
+                        + ". Type of food: " + rr.get(i).getFoodType());
+                    System.out.println("Volunteer,name: " + vol.get(j).getName() + " will deliver to your address");
+                  }
+                }
+              } // end of third if
+              else {
+                System.out.println("Donor name does not match");
+              }
+            }
+
+          } // end of second if
+          else {
+            System.out.println("Sorry currently no volunteer available");
+          }
+        } // end of first if
+        else {
+          if (don.get(d).getName().equals(name)) {
+            // System.out.println(don.get(d).getType());
+          } else {
+            System.out.println("Donor name does not match");
+          }
         }
-        don.remove(f); // remove donor
-        rec.remove(j); // remove receiver
+
       }
     }
   }
