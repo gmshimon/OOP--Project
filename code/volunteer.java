@@ -91,6 +91,8 @@ public class volunteer { // volunteer class
                     System.out.println(rec.get(r).getName() + " Has got donation from " + don.get(d).getName()
                         + ". Amount of money: " + pp.get(i).getAmount());
                     System.out.println("Volunteer,name: " + vol.get(j).getName() + " will deliver to your address");
+                    pp.remove(i);
+                    don.remove(d);
                   }
                 } // end of if
 
@@ -100,6 +102,8 @@ public class volunteer { // volunteer class
                     System.out.println(rec.get(r).getName() + " Has got donation from " + don.get(d).getName()
                         + ". Type of food: " + rr.get(i).getFoodType());
                     System.out.println("Volunteer,name: " + vol.get(j).getName() + " will deliver to your address");
+                    rr.remove(i);
+                    don.remove(d);
                   }
                 }
               } // end of third if
