@@ -95,18 +95,21 @@ public class organizer {
 
                         System.out.printf("%-5s%-20s%-15s%-19s%-15s\n", "NO.", "Name", "Address", "Type",
                                 "Donation");
-                        for (int i = 0; i < don.size(); i++) {
-                            if (don.get(i).getType() == "People") {
-                                System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count,
-                                        pp.lastElement().getName(),
-                                        pp.lastElement().getAddress(), pp.lastElement().getType(),
-                                        pp.lastElement().getAmount() + "(money)");
-                            } else {
-                                System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count, rr.lastElement().getName(),
-                                        rr.lastElement().getAddress(), rr.lastElement().getType(),
-                                        rr.lastElement().getFoodType() +
-                                                "(food)");
-                            }
+
+                        for (int i = 0; i < pp.size(); i++) {
+                            System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count,
+                                    pp.get(i).getName(),
+                                    pp.get(i).getAddress(), pp.get(i).getType(),
+                                    pp.get(i).getAmount() + "(money)");
+                            count++;
+                        }
+
+                        for (int j = 0; j < rr.size(); j++) {
+                            System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count, rr.get(j).getName(),
+                                    rr.get(j).getAddress(), rr.get(j).getType(),
+                                    rr.get(j).getFoodType() +
+                                            "(food)");
+
                             count++;
                         }
                     } else {
@@ -126,7 +129,8 @@ public class organizer {
                         }
 
                         System.out.println("");
-                        Volunteer.deliverItem(vol, don, rec, pp, rr);// vector of volunteer,
+
+                        Volunteer.deliverItem(vol, don, rec, pp, rr, donorNameArray);// vector of volunteer,
                         // donor,receiver,
                         // people,donor and restaurant donor have been
                         // passed
