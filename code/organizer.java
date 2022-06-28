@@ -104,7 +104,7 @@ public class organizer {
                 case 6: {
                     System.out.println(" Provide details");
                     rcvr.input(rec);
-                    rcvr.displayInfo(rec);
+                    // rcvr.displayInfo(rec);
                     break;
                 }
             }

@@ -4,19 +4,19 @@ public class donor { // dobor nested class
 
     protected String name;
     protected String address;
-    protected String deliveryType;
+    // protected String deliveryType;
     protected String type;// it can be people or restaurant
 
     public donor() {
         name = "";
         address = "";
-        deliveryType = "";
+        // deliveryType = "";
     };
 
-    public donor(String n, String a, String dt, String ty) {
+    public donor(String n, String a, String ty) {
         name = n;
         address = a;
-        deliveryType = dt;
+        // deliveryType = dt;
         type = ty;
     }
 
@@ -29,8 +29,8 @@ public class donor { // dobor nested class
         name = Input.nextLine();
         System.out.print("Enter Address: ");
         address = Input.nextLine();
-        System.out.print("Enter Delivery Type: ");
-        deliveryType = Input.nextLine();
+        // System.out.print("Enter Delivery Type: ");
+        // deliveryType = Input.nextLine();
 
         donNameArr.add(name);
     }
@@ -41,6 +41,10 @@ public class donor { // dobor nested class
 
     public String getType() {
         return type;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
     public static void main(String[] arg) {
@@ -56,8 +60,8 @@ class people extends donor {
     people() {
     }
 
-    public people(String name, String address, String deliveryType, String type, double amount) {
-        super(name, address, deliveryType, type);
+    public people(String name, String address, String type, double amount) {
+        super(name, address, type);
         this.amount = amount;
     }
 
@@ -70,9 +74,9 @@ class people extends donor {
         System.out.print("Enter Amount of money: ");
         amount = inp.nextDouble();
         // storing the information of people donor in a vector type donor
-        don.add(new people(name, address, deliveryType, type, amount));
+        don.add(new people(name, address, type, amount));
         // store the information of people donor in a different vector
-        pp.add(new people(name, address, deliveryType, type, amount));
+        pp.add(new people(name, address, type, amount));
     }
 
     public void setAmount(double amount) {
@@ -84,8 +88,7 @@ class people extends donor {
     }
 
     public String toString() {
-        return "\n||||||Donor type:" + type + "||||||\nName: " + name + "\naddress:" + address + "\nDelivery Type: "
-                + deliveryType + "\namount: " + amount;
+        return "\n||||||Donor type:" + type + "||||||\nName: " + name + "\naddress:" + address + "\namount: " + amount;
     }
 }
 
@@ -96,8 +99,8 @@ class restaurant extends donor {
     restaurant() {
     }
 
-    public restaurant(String name, String address, String deliveryType, String type, String foodType) {
-        super(name, address, deliveryType, type);
+    public restaurant(String name, String address, String type, String foodType) {
+        super(name, address, type);
         this.foodType = foodType;
     }
 
@@ -110,9 +113,9 @@ class restaurant extends donor {
         System.out.print("Food type: " + foodType);
         foodType = inp.nextLine();
         // storing the information of restaurant donor in a vector type donor
-        don.add(new restaurant(name, address, deliveryType, type, foodType));
+        don.add(new restaurant(name, address, type, foodType));
         // store the information of restaurant donor in a different vector
-        rr.add(new restaurant(name, address, deliveryType, type, foodType));
+        rr.add(new restaurant(name, address, type, foodType));
     }
 
     public void setFoodType(String foodType) {
@@ -125,7 +128,6 @@ class restaurant extends donor {
 
     public String toString() {
         return "\n\n||||||Donor type:" + type + "||||||\nName of restaurant: " + name + "\naddress:" + address
-                + "\nDelivery Type: " + deliveryType
                 + "\nFood type: " + foodType;
     }
 

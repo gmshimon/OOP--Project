@@ -65,10 +65,9 @@ public class volunteer { // volunteer class
   public void deliverItem(Vector<volunteer> vol, Vector<donor> don, Vector<Receiver> rec, Vector<people> pp,
       Vector<restaurant> rr) {
     if (don.size() == 0) {
-      System.out.println("Sorry we dont have any donation right now.. Later we will try to deliver the donation\n");
+      System.out.println("Sorry we do not have any donation right now.. Later we will try to deliver the donation\n");
     } else {
       for (int j = 0, f = 0; j < rec.size() && f < don.size(); j++, f++) {
-        // if (don.size() > 0) {
         if (don.get(j).getType() == "People") {
           System.out.println(rec.get(j).getName() + " Has got donation from " + don.get(f).getName()
               + ". Amount of money: " + pp.get(f).getAmount());
@@ -80,10 +79,6 @@ public class volunteer { // volunteer class
         }
         don.remove(f); // remove donor
         rec.remove(j); // remove receiver
-        // } else {
-        // System.out.println("Donation not available");
-        // break;
-        // }
       }
     }
   }
