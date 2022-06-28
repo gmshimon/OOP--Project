@@ -10,12 +10,16 @@ public class organizer {
         // restaurant rr = new restaurant();
 
         Vector<Receiver> rec = new Vector<Receiver>(); // creating a vector to store the receiver details
+
         Vector<volunteer> vol = new Vector<volunteer>();// creating a vector to store the volunteer details
+
         Vector<donor> don = new Vector<donor>();// creating a vector to store the donor details
+
         Vector<people> pp = new Vector<people>();// creating a vector to store the people donor
+
         Vector<restaurant> rr = new Vector<restaurant>();// creating a vector to store the restaurant donor
 
-        ArrayList donorNameArray = new ArrayList();
+        ArrayList<String> donorNameArray = new ArrayList<String>();
         ArrayList nameArray = new ArrayList();
 
         Scanner inp = new Scanner(System.in);
@@ -108,6 +112,7 @@ public class organizer {
                         System.out.println("no donor");
                     }
                     if (rec.size() > 0) {
+                        String choice2;
                         System.out.println("++++++++++++++++++++++List of Receiver++++++++++++++++++++++");
 
                         System.out.printf("%-5s%-20s%-15s%-19s%-15s%-10s\n", "NO.", "Name", "Address", "No. of Family",
@@ -119,6 +124,8 @@ public class organizer {
                         }
 
                         System.out.println("");
+                        System.out.print("Type donors name to donate the receiver: ");
+                        choice2 = inp.nextLine();
                         // Volunteer.deliverItem(vol, don, rec, pp, rr);// vector of volunteer,
                         // donor,receiver,
                         // people,donor and restaurant donor have been

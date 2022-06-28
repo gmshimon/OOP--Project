@@ -1,5 +1,3 @@
- // for (int i = 0; i < pp.size(); i++) {
-                        // System.out.printf("%-5d%-20s%-20s%-14s%-17d%\n", (i + 1),
-                        // pp.get(i).getName(),
-                        // pp.get(i).getAddress(), pp.get(i).getType(), pp.get(i).getAmount());
-                        // }
+
+            System.out.println("3. Register as a Volunteer");
+            System.out.println("4. Print all Volunteers");

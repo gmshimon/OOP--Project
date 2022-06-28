@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class donor { // dobor nested class
+public class donor {
 
     protected String name;
     protected String address;
@@ -21,19 +21,33 @@ public class donor { // dobor nested class
         type = ty;
     }
 
-    public void donorInput(ArrayList donNameArr) { // read donor input
-
+    public boolean donorInput(ArrayList<String> donNameArr) { // read donor input
+        boolean isMatch = false;
         Scanner Input = new Scanner(System.in);
         Vector don = new Vector();
 
         System.out.print("Enter Name: ");
         name = Input.nextLine();
-        System.out.print("Enter Address: ");
-        address = Input.nextLine();
-        // System.out.print("Enter Delivery Type: ");
-        // deliveryType = Input.nextLine();
 
-        donNameArr.add(name);
+        // check the input name matched with other name
+        if (donNameArr.size() > 0) {
+            for (int i = 0; i < donNameArr.size(); i++) {
+                if (donNameArr.get(i).equals(name)) {
+                    isMatch = true;
+                    break;
+                }
+            }
+        }
+        if (isMatch) {
+            System.out.println("");
+            System.out.println("Input Name matches with other donors.Use different name");
+            System.out.println("");
+        } else {
+            System.out.print("Enter Address: ");
+            address = Input.nextLine();
+            donNameArr.add(name);
+        }
+        return isMatch;
     }
 
     public String getName() {
@@ -66,22 +80,24 @@ class people extends donor {
         this.amount = amount;
     }
 
-    public people(ArrayList donorNameArray, Vector<donor> don, Vector<people> pp) {
+    public people(ArrayList<String> donorNameArray, Vector<donor> don, Vector<people> pp) {
         Scanner inp = new Scanner(System.in);
         amount = 0.0;
         type = "People";// inherited from donor class
 
         System.out.println("people");
-        donorInput(donorNameArray); // function of superclass donor;
+        boolean isMatch = donorInput(donorNameArray); // function of superclass donor;
 
-        System.out.print("Enter Amount of money: ");
-        amount = inp.nextDouble();
+        if (!isMatch) {
+            System.out.print("Enter Amount of money: ");
+            amount = inp.nextDouble();
 
-        // storing the information of people donor in a vector type donor
-        don.add(new people(name, address, type, amount));
+            // storing the information of people donor in a vector type donor
+            don.add(new people(name, address, type, amount));
 
-        // store the information of people donor in a different vector
-        pp.add(new people(name, address, type, amount));
+            // store the information of people donor in a different vector
+            pp.add(new people(name, address, type, amount));
+        }
     }
 
     public void setAmount(double amount) {
@@ -116,16 +132,18 @@ class restaurant extends donor {
         System.out.println("Restaurant");
 
         type = "Restaurant"; // inherited from donor class
-        donorInput(donorNameArray);
+        boolean isMatch = donorInput(donorNameArray);
 
-        System.out.print("Food type: " + foodType);
-        foodType = inp.nextLine();
+        if (!isMatch) {
+            System.out.print("Food type: " + foodType);
+            foodType = inp.nextLine();
 
-        // storing the information of restaurant donor in a vector type donor
-        don.add(new restaurant(name, address, type, foodType));
+            // storing the information of restaurant donor in a vector type donor
+            don.add(new restaurant(name, address, type, foodType));
 
-        // store the information of restaurant donor in a different vector
-        rr.add(new restaurant(name, address, type, foodType));
+            // store the information of restaurant donor in a different vector
+            rr.add(new restaurant(name, address, type, foodType));
+        }
     }
 
     public void setFoodType(String foodType) {
