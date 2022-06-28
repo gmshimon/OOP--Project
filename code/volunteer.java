@@ -1,3 +1,4 @@
+import java.text.NumberFormat.Style;
 import java.util.*;
 
 public class volunteer { // volunteer class
@@ -60,101 +61,57 @@ public class volunteer { // volunteer class
   }
 
   // assign a volunteer to deliver the item to the receiver
-  public void deliverItem(Vector<volunteer> vol, Vector<donor> don, Vector<Receiver> rec, Vector<people> pp,
-      Vector<restaurant> rr, ArrayList<String> donorNameArray) {
-    Random random = new Random();
-    int value = random.nextInt(0 + vol.size()) + 0;
-    if (don.size() == 0) {
-      System.out.println("Sorry we do not have any donation right now.. Later we will try to deliver the donation\n");
-    } else {
-      Scanner Input = new Scanner(System.in);
-      String name;
+  public void deliverItem(Vector<volunteer> vol, Vector<Receiver> rec, people p, restaurant rest, String type,
+      int value) {
+    System.out.println(type);
+    if (type == "People") {
+      System.out.println(p.getName());
+    }
+    for (int i = 0; i < rec.size(); i++) {
+      // checking the delivery method
+      if (rec.get(i).getDeliveryType() == "Home Delivery") {
+        if (type == "People") {
 
-      System.out.println("");
-      System.out.print("Type donors name to donate the receiver: ");
-
-      name = Input.next();
-
-      for (int d = 0, r = 0; d < don.size() && r < rec.size(); d++, r++) {
-
-        // checks the deliver method the receiver wants
-        if (rec.get(r).getDeliveryMethod() == "Home Delivery") {
+          // print donation and receiver details after donation
+          System.out.println(
+              rec.get(i).getName() + " has got donation from " + p.getName() + ". Amount of money " + p.getAmount());
           if (vol.size() > 0) {
 
-            // generate random number to pick random index number of volunteer
-
-            // check the input donor name matches or not
-            if (don.get(d).getName().equals(name)) {
-
-              // check the donor type
-              if (don.get(d).getType() == "People") {
-                for (int i = 0; i < pp.size(); i++) {
-                  System.out.println(rec.get(r).getName() + " Has got donation from " + don.get(d).getName()
-                      + ". Amount of money: " + pp.get(i).getAmount());
-                  System.out.println("Volunteer,name: " + vol.get(value).getName() + " will deliver to your address");
-
-                  rec.remove(r);
-                  pp.remove(i);// remove the people donor from vector
-                  don.remove(d);// remove the donor from donor vector
-                  donorNameArray.remove(d);
-                }
-              } // end of if
-
-              // restaurant type donor
-              else {
-                for (int i = 0; i < rr.size(); i++) {
-                  System.out.println(rec.get(r).getName() + " Has got donation from " + don.get(d).getName()
-                      + ". Type of food: " + rr.get(i).getFoodType());
-                  System.out.println("Volunteer,name: " + vol.get(value).getName() + " will deliver to your address");
-
-                  rec.remove(r);
-                  rr.remove(i); // remove the restaurant donor from vector
-                  don.remove(d); // remove the donor from donor vector
-                  donorNameArray.remove(d);
-                }
-              }
-            } // end of third if
-            else {
-              System.out.println("Donor name does not match");
-            }
-
-          } // end of second if
-          else {
-            System.out.println("Sorry currently no volunteer available");
-          }
-        } // end of first if
-        else {
-          if (don.get(d).getName().equals(name)) {
-            if (don.get(d).getType() == "People") {
-              for (int i = 0; i < pp.size(); i++) {
-                System.out.println(rec.get(r).getName() + " Has got donation from " + don.get(d).getName()
-                    + ". Amount of money: " + pp.get(i).getAmount());
-
-                rec.remove(r);
-                pp.remove(i);// remove people donor from vector
-                don.remove(d); // remove donor from donor vector
-                donorNameArray.remove(d);
-              }
-            } // end of if
-
-            // restaurant type donor
-            else {
-              for (int i = 0; i < rr.size(); i++) {
-                System.out.println(rec.get(r).getName() + " Has got donation from " + don.get(d).getName()
-                    + ". Type of food: " + rr.get(i).getFoodType());
-
-                rec.remove(r);
-                rr.remove(i); // remove restaurant from vector
-                don.remove(d); // remove donor from donor vector
-                donorNameArray.remove(d);
-              }
-            }
+            // print donation and receiver details after donation
+            System.out.println(vol.get(value).getName() + " will deliver the donation to your address");
           } else {
-            System.out.println("Donor name does not match");
+            System.out.println("Currently we dont have any volunteer.Please colledt your donation.");
+          }
+        } else {
+          System.out.println(
+              // print donation and receiver details after donation
+              rec.get(i).getName() + " has got donation from " + rest.getName() + ". Type of food "
+                  + rest.getFoodType());
+          if (vol.size() > 0) {
+
+            // print donation and receiver details after donation
+            System.out.println(vol.get(value).getName() + " will deliver the donation to your address");
+          } else {
+            System.out.println("Currently we dont have any volunteer.Please collect your donation.");
           }
         }
+      } // end of if
+      else {
+        // check type of donor
+        if (type == "People") {
 
+          // print donation and receiver details after donation
+          System.out.println(
+              rec.get(i).getName() + " has got donation from " + p.getName() + ". Amount of money " + p.getAmount());
+        } else {
+
+          // print donation and receiver details after donation
+          System.out.println(
+              rec.get(i).getName() + " has got donation from " + rest.getName() + ". Type of food "
+                  + rest.getFoodType());
+        }
       }
+      rec.remove(i);
     }
   }
 

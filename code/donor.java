@@ -85,7 +85,7 @@ class people extends donor {
         amount = 0.0;
         type = "People";// inherited from donor class
 
-        System.out.println("people");
+        // System.out.println("people");
         boolean isMatch = donorInput(donorNameArray); // function of superclass donor;
 
         if (!isMatch) {
