@@ -82,6 +82,31 @@ public class organizer {
                     break;
                 }
                 case 5: {
+                    if (don.size() > 0) {
+                        int count = 1;
+                        System.out.println("++++++++++++++++++++++List of Donation++++++++++++++++++++++");
+
+                        // printing the details of the donations
+
+                        System.out.printf("%-5s%-20s%-15s%-19s%-15s\n", "NO.", "Name", "Address", "Type",
+                                "Donation");
+                        for (int i = 0; i < don.size(); i++) {
+                            if (don.get(i).getType() == "People") {
+                                System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count,
+                                        pp.lastElement().getName(),
+                                        pp.lastElement().getAddress(), pp.lastElement().getType(),
+                                        pp.lastElement().getAmount() + "(money)");
+                            } else {
+                                System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count, rr.lastElement().getName(),
+                                        rr.lastElement().getAddress(), rr.lastElement().getType(),
+                                        rr.lastElement().getFoodType() +
+                                                "(food)");
+                            }
+                            count++;
+                        }
+                    } else {
+                        System.out.println("no donor");
+                    }
                     if (rec.size() > 0) {
                         System.out.println("++++++++++++++++++++++List of Receiver++++++++++++++++++++++");
 
@@ -92,10 +117,12 @@ public class organizer {
                                     rec.get(i).getAddress(), rec.get(i).getFamily(), rec.get(i).getReason(),
                                     rec.get(i).getDeliveryType());
                         }
+
                         System.out.println("");
-                        Volunteer.deliverItem(vol, don, rec, pp, rr);// vector of volunteer, donor,receiver,
-                                                                     // people,donor and restaurant donor have been
-                                                                     // passed
+                        // Volunteer.deliverItem(vol, don, rec, pp, rr);// vector of volunteer,
+                        // donor,receiver,
+                        // people,donor and restaurant donor have been
+                        // passed
                     } else {
                         System.out.println("There is no Receiver to take donation\n");
                     }

@@ -11,6 +11,7 @@ public class donor { // dobor nested class
         name = "";
         address = "";
         // deliveryType = "";
+        type = "";
     };
 
     public donor(String n, String a, String ty) {
@@ -69,12 +70,16 @@ class people extends donor {
         Scanner inp = new Scanner(System.in);
         amount = 0.0;
         type = "People";// inherited from donor class
+
         System.out.println("people");
         donorInput(donorNameArray); // function of superclass donor;
+
         System.out.print("Enter Amount of money: ");
         amount = inp.nextDouble();
+
         // storing the information of people donor in a vector type donor
         don.add(new people(name, address, type, amount));
+
         // store the information of people donor in a different vector
         pp.add(new people(name, address, type, amount));
     }
@@ -107,13 +112,18 @@ class restaurant extends donor {
     public restaurant(ArrayList donorNameArray, Vector<donor> don, Vector<restaurant> rr) {
         Scanner inp = new Scanner(System.in);
         foodType = "";
+
         System.out.println("Restaurant");
+
         type = "Restaurant"; // inherited from donor class
         donorInput(donorNameArray);
+
         System.out.print("Food type: " + foodType);
         foodType = inp.nextLine();
+
         // storing the information of restaurant donor in a vector type donor
         don.add(new restaurant(name, address, type, foodType));
+
         // store the information of restaurant donor in a different vector
         rr.add(new restaurant(name, address, type, foodType));
     }
