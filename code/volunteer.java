@@ -63,10 +63,7 @@ public class volunteer { // volunteer class
   // assign a volunteer to deliver the item to the receiver
   public void deliverItem(Vector<volunteer> vol, Vector<Receiver> rec, people p, restaurant rest, String type,
       int value) {
-    System.out.println(type);
-    if (type == "People") {
-      System.out.println(p.getName());
-    }
+
     for (int i = 0; i < rec.size(); i++) {
       // checking the delivery method
       if (rec.get(i).getDeliveryType() == "Home Delivery") {

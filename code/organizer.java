@@ -11,6 +11,8 @@ public class organizer {
 
         Vector<Receiver> rec = new Vector<Receiver>(); // creating a vector to store the receiver details
 
+        Vector<Receiver> acc = new Vector<Receiver>(); // creating vector of accepted receiver
+
         Vector<volunteer> vol = new Vector<volunteer>();// creating a vector to store the volunteer details
 
         Vector<donor> don = new Vector<donor>();// creating a vector to store the donor details
@@ -25,6 +27,7 @@ public class organizer {
         Scanner inp = new Scanner(System.in);
 
         int choice;
+        int choice2;
         String name;
         boolean isMatch = false;
         String type = "";
@@ -89,112 +92,168 @@ public class organizer {
                     break;
                 }
                 case 5: {
-                    if (don.size() > 0) {
-                        int count = 1;
-                        System.out.println("++++++++++++++++++++++List of Donation++++++++++++++++++++++");
 
-                        // printing the details of the donations
-
-                        System.out.printf("%-5s%-20s%-15s%-19s%-15s\n", "NO.", "Name", "Address", "Type",
-                                "Donation");
-
-                        for (int i = 0; i < pp.size(); i++) {
-                            System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count,
-                                    pp.get(i).getName(),
-                                    pp.get(i).getAddress(), pp.get(i).getType(),
-                                    pp.get(i).getAmount() + "(money)");
-                            count++;
-                        }
-
-                        for (int j = 0; j < rr.size(); j++) {
-                            System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count, rr.get(j).getName(),
-                                    rr.get(j).getAddress(), rr.get(j).getType(),
-                                    rr.get(j).getFoodType() +
-                                            "(food)");
-
-                            count++;
-                        }
-                    } else {
-                        System.out.println("no donor");
-                    }
                     System.out.println("");
-                    if (rec.size() > 0) {
-                        // print the details of the receiver
-                        System.out.println("++++++++++++++++++++++List of Receiver++++++++++++++++++++++");
-                        System.out.printf("%-5s%-20s%-15s%-19s%-15s%-10s\n", "NO.", "Name", "Address",
-                                "No. of Family",
-                                "Reason", "Delivery Method");
-                        for (int i = 0; i < rec.size(); i++) {
-                            System.out.printf("%-5d%-20s%-20s%-14d%-17s%-10s\n", (i + 1), rec.get(i).getName(),
-                                    rec.get(i).getAddress(), rec.get(i).getFamily(), rec.get(i).getReason(),
-                                    rec.get(i).getDeliveryType());
-                        }
+                    System.out.println("<<<<<<<<<Select the option>>>>>>>>>>>>");
+                    System.out.println("1. Review the Receiver");
+                    System.out.println("2. Donate\n");
+                    System.out.print("Your Choice: ");
+                    choice2 = inp.nextInt();
+                    switch (choice2) {
+                        case 1: {
+                            if (rec.size() > 0) {
+                                Scanner input = new Scanner(System.in);
+                                String choice3;
+                                System.out.println("");
+                                System.out.println("###########Receiver details###########");
+                                for (int i = 0; i < rec.size(); i++) {
+                                    // print details of receiver one by one
+                                    System.out.println("Name: " + rec.get(i).getName());
+                                    System.out.println("Prof: " + rec.get(i).getProfession());
+                                    System.out.println("Reason: " + rec.get(i).getReason());
+                                    System.out.println("Number of Family: " + rec.get(i).getFamily());
 
-                        System.out.println("");
+                                    System.out.println("");
+                                    System.out.println("Type yes to approve/No to reject: ");
+                                    choice3 = input.nextLine();
 
-                        if (don.size() == 0) {
-                            System.out.println(
-                                    "Sorry we do not have any donation right now.. Later we will try to deliver the donation\n");
-                        } else {
-                            Scanner input = new Scanner(System.in);
-                            System.out.println("");
-                            System.out.print("Type donors name to donate the receiver: ");
-                            name = input.nextLine();
-
-                            // check the input name with donor list name
-                            for (int i = 0; i < don.size(); i++) {
-                                if (don.get(i).getName().equals(name)) {
-                                    type = don.get(i).getType();
-                                    isMatch = true;
-                                    don.remove(i);// remove the donor from donor vector
-                                    donorNameArray.remove(i); // remove donor name from donor name arrat
-                                    break;
-                                }
-                            }
-
-                            if (isMatch) {
-                                Random random = new Random();
-                                // generate random number to pick random index number of volunteer
-                                int value = 0;
-                                if (vol.size() > 0) {
-                                    for (int i = 0; i < vol.size(); i++) {
-                                        value = random.nextInt(0 + vol.size()) + 0;
+                                    if (choice3.equals("yes") || choice3.equals("Yes")) {
+                                        // those who are accepted are added into new vector called acc type Receiver
+                                        acc.add(rec.get(i));
+                                    } else if (choice3.equals("no") || choice3.equals("No")) {
+                                        System.out.println("The receiver has been rejected\n");
                                     }
-                                }
-                                for (int i = 0; i < pp.size(); i++) {
-                                    if (pp.get(i).getName().equals(name)) {
-                                        people = pp.get(i);
-                                        pp.remove(i);
-                                        Volunteer.deliverItem(vol, rec, people, rest, type, value);// volunteer vector,
-                                                                                                   // receiver vector,
-                                                                                                   // people donor
-                                                                                                   // object, restaurant
-                                                                                                   // donor object, type
-                                                                                                   // of donor== passed
-                                        break;
-                                    }
-                                }
-                                for (int i = 0; i < rr.size(); i++) {
-                                    if (rr.get(i).getName().equals(name)) {
-                                        rest = rr.get(i);
-                                        rr.remove(i);
-                                        Volunteer.deliverItem(vol, rec, people, rest, type, value); // volunteer vector,
-                                                                                                    // receiver vector,
-                                                                                                    // people donor
-                                                                                                    // object,
-                                                                                                    // restaurant donor
-                                                                                                    // object, type of
-                                                                                                    // donor== passed
-                                        break;
-                                    }
+                                    rec.remove(i); // after accepting and rejection remove the receiver from vector
                                 }
                             } else {
-                                System.out.println("Donor name does not match");
+                                System.out.println("There is no receiver\n");
                             }
+                            break;
                         }
-                    } else {
-                        System.out.println("There is no Receiver to take donation\n");
+                        case 2: {
+                            if (acc.size() > 0) {
+                                if (don.size() > 0) {
+                                    int count = 1;
+                                    System.out.println("++++++++++++++++++++++List of Donation++++++++++++++++++++++");
+
+                                    // printing the details of the donations
+
+                                    System.out.printf("%-5s%-20s%-15s%-19s%-15s\n", "NO.", "Name", "Address", "Type",
+                                            "Donation");
+
+                                    for (int i = 0; i < pp.size(); i++) {
+                                        System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count,
+                                                pp.get(i).getName(),
+                                                pp.get(i).getAddress(), pp.get(i).getType(),
+                                                pp.get(i).getAmount() + "(money)");
+                                        count++;
+                                    }
+
+                                    for (int j = 0; j < rr.size(); j++) {
+                                        System.out.printf("%-5d%-20s%-15s%-19s%-17s\n", count, rr.get(j).getName(),
+                                                rr.get(j).getAddress(), rr.get(j).getType(),
+                                                rr.get(j).getFoodType() +
+                                                        "(food)");
+
+                                        count++;
+                                    }
+                                } else {
+                                    System.out.println("=====no donor=====\n");
+                                }
+                                if (acc.size() > 0) {
+                                    // print the details of the receiver
+                                    System.out.println(
+                                            "++++++++++++++++++++++List of Accepted Receiver++++++++++++++++++++++");
+                                    System.out.printf("%-5s%-20s%-15s%-19s%-15s%-10s\n", "NO.", "Name", "Address",
+                                            "No. of Family",
+                                            "Reason", "Delivery Method");
+                                    for (int i = 0; i < acc.size(); i++) {
+                                        System.out.printf("%-5d%-20s%-20s%-14d%-17s%-10s\n", (i + 1),
+                                                acc.get(i).getName(),
+                                                acc.get(i).getAddress(), acc.get(i).getFamily(), acc.get(i).getReason(),
+                                                acc.get(i).getDeliveryType());
+                                    }
+
+                                    System.out.println("");
+
+                                    if (don.size() == 0) {
+                                        System.out.println(
+                                                "Sorry we do not have any donation right now.. Later we will try to deliver the donation\n");
+                                    } else {
+                                        Scanner input = new Scanner(System.in);
+                                        System.out.println("");
+                                        System.out.print("Type donors name to donate the receiver: ");
+                                        name = input.nextLine();
+
+                                        // check the input name with donor list name
+                                        for (int i = 0; i < don.size(); i++) {
+                                            if (don.get(i).getName().equals(name)) {
+                                                type = don.get(i).getType();
+                                                isMatch = true;
+                                                don.remove(i);// remove the donor from donor vector
+                                                donorNameArray.remove(i); // remove donor name from donor name arrat
+                                                break;
+                                            }
+                                        }
+
+                                        if (isMatch) {
+                                            Random random = new Random();
+                                            // generate random number to pick random index number of volunteer
+                                            int value = 0;
+                                            if (vol.size() > 0) {
+                                                for (int i = 0; i < vol.size(); i++) {
+                                                    value = random.nextInt(0 + vol.size()) + 0;
+                                                }
+                                            }
+                                            for (int i = 0; i < pp.size(); i++) {
+                                                if (pp.get(i).getName().equals(name)) {
+                                                    people = pp.get(i); // copy the data of people vector of index i to
+                                                                        // object people
+                                                    pp.remove(i);
+                                                    Volunteer.deliverItem(vol, acc, people, rest, type, value);
+                                                    break;
+                                                }
+                                            }
+                                            for (int i = 0; i < rr.size(); i++) {
+                                                if (rr.get(i).getName().equals(name)) {
+                                                    rest = rr.get(i);
+                                                    rr.remove(i);
+                                                    Volunteer.deliverItem(vol, acc, people, rest, type, value); // volunteer
+                                                                                                                // vector,
+                                                                                                                // receiver
+                                                                                                                // vector,
+                                                                                                                // people
+                                                                                                                // donor
+                                                                                                                // object,
+                                                                                                                // restaurant
+                                                                                                                // donor
+                                                                                                                // object,
+                                                                                                                // type
+                                                                                                                // of
+                                                                                                                // donor==
+                                                                                                                // passed
+                                                    break;
+                                                }
+                                            }
+                                        } else {
+                                            System.out.println("Donor name does not match");
+                                        }
+                                    }
+                                } else {
+                                    System.out.println("There is no Receiver to take donation\n");
+                                }
+                            } else {
+                                System.out.println(
+                                        "\nThere is no accepted receiver... Please accept receiver at first\n");
+                            }
+                            break;
+                        }
+                        default: {
+                            System.out.println("Wrong choice\n");
+                            break;
+                        }
                     }
+
                     break;
                 }
                 case 6: {
