@@ -53,10 +53,13 @@ public class volunteer { // volunteer class
       System.out.println("======= No Volunteer Found =======");
     } else {
       System.out.println("\n==========Volunteer details==========");
+      System.out.printf("%-5s%-20s%-15s%-19s\n", "NO.", "Name", "Profession", "Ages");
       for (int i = 0; i < vol.size(); i++) {
-        System.out.println("\n||||||||||||||||||| Volunteer" + (i + 1) + " |||||||||||||||||||");
-        System.out.println(vol.get(i).toString());
+        System.out.printf("%-5d%-20s%-15s%-19d\n", (i + 1),
+            vol.get(i).getName(),
+            vol.get(i).getProfession(), vol.get(i).getAge());
       }
+      System.out.println("");
     }
   }
 
@@ -77,7 +80,7 @@ public class volunteer { // volunteer class
             // print donation and receiver details after donation
             System.out.println(vol.get(value).getName() + " will deliver the donation to your address");
           } else {
-            System.out.println("Currently we dont have any volunteer.Please colledt your donation.");
+            System.out.println("Currently we dont have any volunteer.Please collect your donation.");
           }
         } else {
           System.out.println(
@@ -99,13 +102,14 @@ public class volunteer { // volunteer class
 
           // print donation and receiver details after donation
           System.out.println(
-              rec.get(i).getName() + " has got donation from " + p.getName() + ". Amount of money " + p.getAmount());
+              rec.get(i).getName() + " has got donation from " + p.getName() + ". Amount of money " + p.getAmount()
+                  + "\n");
         } else {
 
           // print donation and receiver details after donation
           System.out.println(
               rec.get(i).getName() + " has got donation from " + rest.getName() + ". Type of food "
-                  + rest.getFoodType());
+                  + rest.getFoodType() + "\n");
         }
       }
       rec.remove(i);
