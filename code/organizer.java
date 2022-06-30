@@ -2,9 +2,11 @@ import java.util.*;
 
 public class organizer {
     protected volunteer Volunteer;
+    protected Receiver receiver;
 
-    public organizer(volunteer Volunteer) {
+    public organizer(volunteer Volunteer, Receiver receiver) {
         this.Volunteer = Volunteer;
+        this.receiver = receiver;
     }
 
     public void takeInput(Vector<volunteer> vol, ArrayList nameArray) {
@@ -21,14 +23,21 @@ public class organizer {
         Volunteer.deliverItem(vol, acc, people, rest, type, value);
     }
 
-    public static void main(String[] args) {
-        volunteer V = new volunteer();
-        organizer Organizer = new organizer(V); // organizer object
+    public void inputReceiver(Vector<Receiver> rec) {
+        receiver.input(rec);
+    }
 
-        Receiver rcvr = new Receiver();
+    public static void main(String[] args) {
+        volunteer V = new volunteer(); // volunteer class object
+
+        Receiver rcvr = new Receiver(); // receiver class object
+
+        organizer Organizer = new organizer(V, rcvr); // organizer object
+
         donor Donor = new donor();
-        people people = new people();
-        restaurant rest = new restaurant();
+
+        people people = new people(); // people class object
+        restaurant rest = new restaurant(); // restaurant class object
 
         Vector<Receiver> rec = new Vector<Receiver>(); // creating a vector to store the receiver details
 
@@ -291,7 +300,7 @@ public class organizer {
                 }
                 case 6: {
                     System.out.println(" Provide details");
-                    rcvr.input(rec);
+                    Organizer.inputReceiver(rec);
                     break;
                 }
             }
