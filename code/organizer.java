@@ -1,9 +1,30 @@
 import java.util.*;
 
 public class organizer {
-    public static void main(String[] args) {
+    protected volunteer Volunteer;
 
-        volunteer Volunteer = new volunteer();
+    public organizer(volunteer Volunteer) {
+        this.Volunteer = Volunteer;
+    }
+
+    public void takeInput(Vector<volunteer> vol, ArrayList nameArray) {
+        Volunteer.takeInput(vol, nameArray);
+    }
+
+    public void displayVolunteerMethod(Vector<volunteer> vol) {
+        Volunteer.displayVolunteer(vol);
+    }
+
+    public void deliverItemMethod(Vector<volunteer> vol, Vector<Receiver> acc, people people, restaurant rest,
+            String type,
+            int value) {
+        Volunteer.deliverItem(vol, acc, people, rest, type, value);
+    }
+
+    public static void main(String[] args) {
+        volunteer V = new volunteer();
+        organizer Organizer = new organizer(V); // organizer object
+
         Receiver rcvr = new Receiver();
         donor Donor = new donor();
         people people = new people();
@@ -84,11 +105,11 @@ public class organizer {
                 }
 
                 case 3: {
-                    Volunteer.takeInput(vol, nameArray);
+                    Organizer.takeInput(vol, nameArray);
                     break;
                 }
                 case 4: {
-                    Volunteer.displayVolunteer(vol);
+                    Organizer.displayVolunteerMethod(vol);
                     break;
                 }
                 case 5: {
@@ -215,7 +236,8 @@ public class organizer {
                                                                             // to
                                                                             // object people
                                                         pp.remove(i);
-                                                        Volunteer.deliverItem(vol, acc, people, rest, type, value);
+                                                        Organizer.deliverItemMethod(vol, acc, people, rest, type,
+                                                                value);
                                                         break;
                                                     }
                                                 }
@@ -223,20 +245,22 @@ public class organizer {
                                                     if (rr.get(i).getName().equals(name)) {
                                                         rest = rr.get(i);
                                                         rr.remove(i);
-                                                        Volunteer.deliverItem(vol, acc, people, rest, type, value); // volunteer
-                                                                                                                    // vector,
-                                                                                                                    // receiver
-                                                                                                                    // vector,
-                                                                                                                    // people
-                                                                                                                    // donor
-                                                                                                                    // object,
-                                                                                                                    // restaurant
-                                                                                                                    // donor
-                                                                                                                    // object,
-                                                                                                                    // type
-                                                                                                                    // of
-                                                                                                                    // donor==
-                                                                                                                    // passed
+                                                        Organizer.deliverItemMethod(vol, acc, people, rest, type,
+                                                                value);
+                                                        // // volunteer
+                                                        // vector,
+                                                        // receiver
+                                                        // vector,
+                                                        // people
+                                                        // donor
+                                                        // object,
+                                                        // restaurant
+                                                        // donor
+                                                        // object,
+                                                        // type
+                                                        // of
+                                                        // donor==
+                                                        // passed
                                                         break;
                                                     }
                                                 }
