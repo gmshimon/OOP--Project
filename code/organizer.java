@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class organizer {
-    protected volunteer Volunteer;
+    private volunteer Volunteer;
     protected Receiver receiver;
 
     public organizer(volunteer Volunteer, Receiver receiver) {
