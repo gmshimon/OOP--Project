@@ -62,6 +62,10 @@ public class donor {
         return address;
     }
 
+    public String toString() {
+        return "|||||| Donor Details ||||||\n" + "Name: " + name + " Type: " + type + " Address: " + address;
+    }
+
     public static void main(String[] arg) {
 
     }
