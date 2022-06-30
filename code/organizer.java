@@ -9,20 +9,24 @@ public class organizer {
         this.receiver = receiver;
     }
 
+    // method Volunteer class to take input of volunteer
     public void takeInput(Vector<volunteer> vol, ArrayList nameArray) {
         Volunteer.takeInput(vol, nameArray);
     }
 
+    // method to call displayVolunteer of Volunteer class
     public void displayVolunteerMethod(Vector<volunteer> vol) {
         Volunteer.displayVolunteer(vol);
     }
 
+    // method to call deliverItem of Volunteer class
     public void deliverItemMethod(Vector<volunteer> vol, Vector<Receiver> acc, people people, restaurant rest,
             String type,
             int value) {
         Volunteer.deliverItem(vol, acc, people, rest, type, value);
     }
 
+    // method to call input of receiver class
     public void inputReceiver(Vector<Receiver> rec) {
         receiver.input(rec);
     }
