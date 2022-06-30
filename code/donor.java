@@ -4,20 +4,17 @@ public class donor {
 
     protected String name;
     protected String address;
-    // protected String deliveryType;
     protected String type;// it can be people or restaurant
 
     public donor() {
         name = "";
         address = "";
-        // deliveryType = "";
         type = "";
     };
 
     public donor(String n, String a, String ty) {
         name = n;
         address = a;
-        // deliveryType = dt;
         type = ty;
     }
 
@@ -77,6 +74,7 @@ class people extends donor {
     private double amount;
 
     people() {
+        amount = 0.0;
     }
 
     public people(String name, String address, String type, double amount) {
@@ -122,6 +120,7 @@ class restaurant extends donor {
     private String foodType;
 
     restaurant() {
+        foodType = "";
     }
 
     public restaurant(String name, String address, String type, String foodType) {

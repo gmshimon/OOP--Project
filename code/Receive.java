@@ -118,12 +118,6 @@ class Receiver {
             System.out.println("======= No Receiver Found =======");
         } else {
             System.out.println("\n==========Receiver details==========");
-            // System.out.println("Name: " + name);
-            // System.out.println("Profession: " + profession);
-            // System.out.println("Number of family members: " + noOfFamilyMember);
-            // System.out.println("State your reason: " + reason);
-            // System.out.println("Address: " + address);
-            // System.out.println("Delivery type: " + deliveryType + "\n");
             for (int i = 0; i < rec.size(); i++) {
                 System.out.println("\n||||||||||||||||||| Receiver" + (i + 1) + " |||||||||||||||||||");
                 System.out.println(rec.get(i).toString());
